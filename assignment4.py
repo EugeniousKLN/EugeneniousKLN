@@ -66,8 +66,7 @@ def totalWords(userInput):
 
 def most_common_words(userInput):
     list_of_words = openFile(userInput).split()
-    count_words = {}
-    
+    count_words ={}  
     for word in list_of_words:
         if word.endswith('!'):
             word = word[:-1]
@@ -84,8 +83,8 @@ def most_common_words(userInput):
         elif word.endswith(';'):
             word = word[:-1]
             count_words.update({word: openFile(userInput).count(word)})
-        elif word == ['!',',','.','?',';','']:
-            count_words.update({word: openFile(userInput).count(word)})
+        # elif word == ['!',',','.','?',';']:
+        #     count_words.update({word: openFile(userInput).count(word)})
         else:
             count_words.update({word: openFile(userInput).count(word)})
 
@@ -97,7 +96,15 @@ def most_common_words(userInput):
 
     
 
-
+def wrapUp(userInput):
+    paragraphs = num_of_paragraphs(userInput)
+    sentences = num_of_sentences_in_paragraphs(userInput)
+    words_count = num_of_words_in_paragraphs(userInput)
+    k = 0
+    for i in range(1,paragraphs+1):
+        print("There are " + str(words_count[k]) + " words in paragraph number " + str(i))
+        print("There are " + str(sentences[k]) + " sentences in paragraph number " + str(i))
+        k = k + 1
 
 
 
@@ -105,29 +112,9 @@ def most_common_words(userInput):
 
 
 def main():
-
-
     userInput = input("Please choose file in the directory of your program: ")
-    # y = totalWords(userInput)
-    # x = num_of_paragraphs(userInput)
-    print(most_common_words(userInput))
-    print(num_of_words_in_paragraphs(userInput))
-    print(num_of_sentences_in_paragraphs(userInput))
-    # print("number of paragraphs:", x)
-    # print("Total number of words: ", y)
-
-    
-    
-    
-
-
-    
-    
-
-    
-    
-    
-
+    wrapUp(userInput)
+    print("-----Total # of words in ", userInput, " is: ", totalWords(userInput)," ------" )
     main()
 main()
 
