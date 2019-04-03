@@ -67,10 +67,31 @@ def totalWords(userInput):
 def most_common_words(userInput):
     list_of_words = openFile(userInput).split()
     count_words = {}
+    
     for word in list_of_words:
-        count_words.update({word: openFile(userInput).count(word)})
-    for big in count_words.values():
-        
+        if word.endswith('!'):
+            word = word[:-1]
+            count_words.update({word: openFile(userInput).count(word)})
+        elif word.endswith('.'):
+            word = word[:-1]
+            count_words.update({word: openFile(userInput).count(word)})
+        elif word.endswith('?'):
+            word = word[:-1]
+            count_words.update({word: openFile(userInput).count(word)})
+        elif word.endswith(','):
+            word = word[:-1]
+            count_words.update({word: openFile(userInput).count(word)})
+        elif word.endswith(';'):
+            word = word[:-1]
+            count_words.update({word: openFile(userInput).count(word)})
+        elif word == ['!',',','.','?',';','']:
+            count_words.update({word: openFile(userInput).count(word)})
+        else:
+            count_words.update({word: openFile(userInput).count(word)})
+
+            
+    largest_value = max(count_words.values())
+    print(largest_value)
         
     return count_words
 
