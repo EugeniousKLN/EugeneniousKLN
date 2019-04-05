@@ -108,17 +108,24 @@ def most_common_words(userInput):
     return largest_value
 
     
-### Jackson, we have to change this function to something called "createOutput_file"
-### and we still need to actually "wrap up" everything to the outpur file
-def wrapUp(userInput):
+# Function createOutput_file takes userInput as a parameter
+# and creates new file called "report.in"and writes all 
+# information obtained from previous functions into it.
+# i.e. number of words,sentences and paragraphs is written 
+# into this file by looping through each paragraph.
+def createOutput_file(userInput):
+    outputFile = open("report.in" ,"w+")
     paragraphs = num_of_paragraphs(userInput)
     sentences = num_of_sentences_in_paragraphs(userInput)
     words_count = num_of_words_in_paragraphs(userInput)
+    outputFile.write("-----Total # of words in "+ userInput+ " is: " + str(totalWords(userInput)) + " words ------")
     k = 0
     for i in range(1,paragraphs+1):
-        print("There are " + str(words_count[k]) + " words in paragraph number " + str(i))
-        print("There are " + str(sentences[k]) + " sentences in paragraph number " + str(i))
+        outputFile.write("\nparagraph number: " + str(i))
+        outputFile.write("\n\tThere are " + str(words_count[k]) + " words in paragraph number " + str(i))
+        outputFile.write("\n\tThere are " + str(sentences[k]) + " sentences in paragraph number " + str(i))
         k = k + 1
+    
 
 
 
@@ -129,13 +136,6 @@ def wrapUp(userInput):
 # write required information to a new output file.
 def main():
     userInput = input("Please choose file in the directory of your program: ")
-    wrapUp(userInput)
-    print("-----Total # of words in ", userInput, " is: ", totalWords(userInput)," ------" )
-    print(most_common_words(userInput))
+    createOutput_file(userInput)
     main()
 main()
-
-
-
-
-# assignment4.py
