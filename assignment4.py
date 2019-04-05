@@ -33,6 +33,11 @@ def num_of_paragraphs(userInput):
     num_of_paragraphs = len(openFile(userInput).split('\n\n'))
     return num_of_paragraphs
 
+
+# Function num_of_sentences_in_paragraphs again takes userInput as a parameter and 
+# then loops through the list of paragraphs counting number of sentences for each 
+# paragraph. It returns list of # of sentences with index corresponding to the index
+# of pargraphs list.(i.e. index of num_of_sentences = index of list_of_paragraphs)
 def num_of_sentences_in_paragraphs(userInput):
     list_of_paragraphs = openFile(userInput).split('\n\n')
     num_of_sentences = []
@@ -45,6 +50,15 @@ def num_of_sentences_in_paragraphs(userInput):
         num_of_sentences.append(sum(num_of_sentences_in_eachPar))
     return num_of_sentences
 
+
+# Function num_of_words_in_paragraphs again takes userInput as a parameter and
+# then "creates" a list of paragraphs by splitting input file on a newline.
+# Then the function loops through every element in the "list_of_paragraphs"
+# and counts number of words in each one(i.e. the function loops through
+#  every paragraph). As a result, the function appends number of words in each
+# paragraph to a new list and returns it. Every element in "words_in_paragraphs"
+# has the same index as every element in "list_of_paragraphs" so that the values
+# can be easily extracted for later use.
 def num_of_words_in_paragraphs(userInput):
     list_of_paragraphs = openFile(userInput).split('\n\n')
     words_in_paragraphs = []
@@ -56,8 +70,9 @@ def num_of_words_in_paragraphs(userInput):
 
 
         
-
-
+# Function totalWords takes userInput as a parameter, opens text file by calling
+# openFile function and then simply evaluates the lenght of the list of words in
+# the text file which was "created" by using split() function.
 def totalWords(userInput):
     total_num_of_words = len(openFile(userInput).split())
     return total_num_of_words
@@ -83,19 +98,18 @@ def most_common_words(userInput):
         elif word.endswith(';'):
             word = word[:-1]
             count_words.update({word: openFile(userInput).count(word)})
-        # elif word == ['!',',','.','?',';']:
-        #     count_words.update({word: openFile(userInput).count(word)})
         else:
             count_words.update({word: openFile(userInput).count(word)})
 
             
     largest_value = max(count_words.values())
-    print(largest_value)
+    
         
-    return count_words
+    return largest_value
 
     
-
+### Jackson, we have to change this function to something called "createOutput_file"
+### and we still need to actually "wrap up" everything to the outpur file
 def wrapUp(userInput):
     paragraphs = num_of_paragraphs(userInput)
     sentences = num_of_sentences_in_paragraphs(userInput)
@@ -110,11 +124,14 @@ def wrapUp(userInput):
 
 
 
-
+# main() function asks user to choose file and then calls different functions
+# in order to first obtain information from the input file and then to 
+# write required information to a new output file.
 def main():
     userInput = input("Please choose file in the directory of your program: ")
     wrapUp(userInput)
     print("-----Total # of words in ", userInput, " is: ", totalWords(userInput)," ------" )
+    print(most_common_words(userInput))
     main()
 main()
 
